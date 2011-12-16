@@ -206,6 +206,66 @@ to the map.
         return this;
     },
 /**
+ ###*map*.`mode([mode])`
+_version added 0.1_
+####**Description**: get/set the mode
+
+**mode** the mode to set
+
+>Returns: mode
+
+The `.mode()` method allows to quickly activate/deactivate controls, or to
+find out what the current mode is.
+
+     var mode = map.mode(); // get current mode
+     map.mode('zoomin');
+     map.mode('zoomout');
+     map.mode('zoombox');
+     map.mode('pan');
+     map.mode('OpenLayers.Control.ZoomIn'); // you can also use the OpenLayers class names of controls directly
+     map.mode('disable'); // deactivate all controls
+ */
+    mode: function (mode){
+        if(!mode) {
+            for(var i = 0; i < this.olMap.controls.length; ++i) {
+                var c = this.olMap.controls[i];
+                if(!c.active) continue;
+                switch(c.CLASS_NAME) {
+                    case 'OpenLayers.Control.DragPan': return 'pan';
+                    case 'OpenLayers.Control.ZoomIn': return 'zoomin';
+                    case 'OpenLayers.Control.ZoomOut': return 'zoomout';
+                    case 'OpenLayers.Control.ZoomBox': return 'zoombox';
+                }
+                return c.CLASS_NAME;
+            }
+            return null;
+        }
+
+        switch(mode) {
+        case 'pan':
+            mode = 'OpenLayers.Control.DragPan';
+            break;
+        case 'zoomin':
+            mode = 'OpenLayers.Control.ZoomIn';
+            break;
+        case 'zoomout':
+            mode = 'OpenLayers.Control.ZoomOut';
+            break;
+        case 'zoombox':
+            mode = 'OpenLayers.Control.ZoomBox';
+            break;
+        }
+        for(var i = 0; i < this.olMap.controls.length; ++i) {
+            var c = this.olMap.controls[i];
+            if(c.CLASS_NAME === mode) {
+                c.activate();
+            } else {
+                c.deactivate();
+            }
+        }
+    },
+
+/**
  ###*map*.`center([options])`
 _version added 0.1_
 ####**Description**: get/set the extent, zoom and position of the map
@@ -233,7 +293,7 @@ extent from the map. The coordinates are returned in displayProjection.
      var center = map.center(); //get the current zoom, position and extent
      map.center({zoom:4}); //zoom to zoomlevel 4
      map.center({position:[5,52]}); //pan to point 5,52
-     map.center(box:[-180,-90,180,90]); //zoom to the box -180,-900,180,90
+     map.center(box:[-180,-90,180,90]); //zoom to the box -180,-90,180,90
      //pan to point 125000,485000 in dutch projection
      map.center({position:[125000,485000],projection:'EPSG:28992'});
  */
@@ -582,9 +642,9 @@ _version added 0.1_
 ####**Description**: create a Bing maps layer
 
 **view** a string ['road','hybrid','satellite'] to define which Bing maps
-layer to use (default road)   
+layer to use (default road)
 **key** Bing Maps API key for your application. Get you own at
-http://bingmapsportal.com/ 
+http://bingmapsportal.com/
 **label** string with the name of the layer
 
 
@@ -697,7 +757,7 @@ _version added 0.1_
 stating which update strategy should be used (default fixed)
 (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
 **projection** a string with the projection of the JSON data (default EPSG:4326)
-**styleMap** {object} the style to be used to render the JSON data    
+**styleMap** {object} the style to be used to render the JSON data
 **label** string with the name of the layer
 
 
@@ -770,10 +830,10 @@ stating which update strategy should be used (default fixed)
 _version added 0.1_
 ####**Description**: create an OpenStreetMap layer
 
- 
-**label** string with the name of the layer   
-**url** A single URL (string) or an array of URLs to OSM-like server like 
-Cloudmade   
+
+**label** string with the name of the layer
+**url** A single URL (string) or an array of URLs to OSM-like server like
+Cloudmade
 **attribution** A string to put some attribution on the map
 
       layers:[{
@@ -784,7 +844,7 @@ Cloudmade
           'http://c.tile.cloudmade.com/<yourapikey>/999/256/${z}/${x}/${y}.png'
         ],
         attribution: "Data &copy; 2009 <a href='http://openstreetmap.org/'>
-          OpenStreetMap</a>. Rendering &copy; 2009 
+          OpenStreetMap</a>. Rendering &copy; 2009
           <a href='http://cloudmade.com'>CloudMade</a>."
         }]
 
@@ -842,7 +902,7 @@ _version added 0.1_
 **url** a string pointing to the location of the WMTS service
 **layer** a string with the name of the WMTS layer
 **matrixSet** a string with one of the advertised matrix set identifiers
-**style** a string with one of the advertised layer styles    
+**style** a string with one of the advertised layer styles
 **label** string with the name of the layer
 
 
