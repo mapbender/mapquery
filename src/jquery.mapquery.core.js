@@ -260,23 +260,30 @@ find out what the current mode is.
             switch(mode) {
             case 'OpenLayers.Control.DragPan':
             case 'OpenLayers.Control.ZoomBox':
-                c.CLASS_NAME === mode ? c.activate() : c.deactivate;
-                break;
             case 'OpenLayers.Control.ZoomIn':
             case 'OpenLayers.Control.ZoomOut':
-                var fun = c.CLASS_NAME === mode ? this.olMap.events.register : this.olMap.events.unregister;
-                fun('click', this, mode === 'OpenLayers.Control.Zoomin' ? this._onZoomIn : this._onZoomOut);
+                c.CLASS_NAME === mode ? c.activate() : c.deactivate();
                 break;
             }
+        }
+        this.olMap.events.unregister('click', this, this._onZoomIn);
+        this.olMap.events.unregister('click', this, this._onZoomOut);
+        switch(mode) {
+        case 'OpenLayers.Control.ZoomIn':
+            this.olMap.events.register('click', this, this._onZoomIn);
+            break;
+        case 'OpenLayers.Control.ZoomOut':
+            this.olMap.events.register('click', this, this._onZoomOut);
+            break;
         }
     },
 
     _onZoomIn: function(evt) {
-        this.olMap.zoomIn(1);
+        this.olMap.zoomIn();
     },
 
     _onZoomOut: function(evt) {
-        this.olMap.zoomOut(1);
+        this.olMap.zoomOut();
     },
 
 /**
