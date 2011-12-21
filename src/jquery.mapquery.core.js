@@ -257,12 +257,26 @@ find out what the current mode is.
         }
         for(var i = 0; i < this.olMap.controls.length; ++i) {
             var c = this.olMap.controls[i];
-            if(c.CLASS_NAME === mode) {
-                c.activate();
-            } else {
-                c.deactivate();
+            switch(mode) {
+            case 'OpenLayers.Control.DragPan':
+            case 'OpenLayers.Control.ZoomBox':
+                c.CLASS_NAME === mode ? c.activate() : c.deactivate;
+                break;
+            case 'OpenLayers.Control.ZoomIn':
+            case 'OpenLayers.Control.ZoomOut':
+                var fun = c.CLASS_NAME === mode ? this.olMap.events.register : this.olMap.events.unregister;
+                fun('click', this, mode === 'OpenLayers.Control.Zoomin' ? this._onZoomIn : this._onZoomOut);
+                break;
             }
         }
+    },
+
+    _onZoomIn: function(evt) {
+        this.olMap.zoomIn(1);
+    },
+
+    _onZoomOut: function(evt) {
+        this.olMap.zoomOut(1);
     },
 
 /**
