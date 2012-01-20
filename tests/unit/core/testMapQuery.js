@@ -129,7 +129,7 @@ test("Bing layer can be created", function() {
         type:'bing',view:'satellite',key:'ArAGGPJ16xm0RXRbw27PvYc9Tfuj1k1dUr_gfA5j8QBD6yAYMlsAtF6YkVyiiLGn'
     });
     ok(map.layersList.mapquery0.olLayer.name=="Bing Aerial",
-       'Bing layer was loaded (name is Bong Aerial)');
+       'Bing layer was loaded (name is Bing Aerial)');
 });
 test("Add layers on initialisation", function() {
     expect(3);

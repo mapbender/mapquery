@@ -17,11 +17,11 @@ the matched element
 **options**  an object of key-value pairs with options for the map. Possible
 pairs are:
 
- * **layers** (array of MapQuery.Layer *or* MapQuery.Layer): Either an array
- * or a single layer that should be added to the map
+ * **layers** (array of MapQuery.Layer *or* MapQuery.Layer): Either an array 
+ or a single layer that should be added to the map
  * **center** ({position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}):
- * Initially go to a certain location. At least one layer (in the `layers`
- * option) needs to be specified.
+ Initially go to a certain location. At least one layer (in the `layers`
+ option) needs to be specified.
 
 > Returns: $('selector') (jQuery object)
 
@@ -291,13 +291,13 @@ find out what the current mode is.
 _version added 0.1_
 ####**Description**: get/set the extent, zoom and position of the map
 
-**position** the position as [x,y] in displayProjection (default EPSG:4326)
+ * **position** the position as [x,y] in displayProjection (default EPSG:4326)
 to center the map at
-**zoom** the zoomlevel as integer to zoom the map to
-**box** an array with the lower left x, lower left y, upper right x,
+ * **zoom** the zoomlevel as integer to zoom the map to
+ * **box** an array with the lower left x, lower left y, upper right x,
 upper right y to zoom the map to,
 this will take precedent when conflicting with any of the above values
-**projection** the projection the coordinates are in, default is
+ * **projection** the projection the coordinates are in, default is
 the displayProjection
 
 >Returns: {position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}
@@ -471,7 +471,7 @@ $.MapQuery.Layer.prototype = {
 _version added 0.1_
 ####**Description**: move the layer down in the layer stack of the map
 
-**delta** the amount of layers the layer has to move down in the layer
+ * **delta** the amount of layers the layer has to move down in the layer
 stack (default 1)
 
 >Returns layer (MapQuery.Layer)
@@ -528,7 +528,7 @@ _version added 0.1_
 ####**Description**: get/set the `position` of the layer in the layer
 stack of the map
 
-**position** an integer setting the new position of the layer in the layer stack
+ * **position** an integer setting the new position of the layer in the layer stack
 
 >Returns: position (integer)
 
@@ -556,7 +556,7 @@ return the current postion.
 _version added 0.1_
 ####**Description**: move the layer up in the layer stack of the map
 
-**delta** the amount of layers the layer has to move up in the layer
+ * **delta** the amount of layers the layer has to move up in the layer
 stack (default 1)
 
 >Returns: layer (MapQuery.Layer)
@@ -584,7 +584,7 @@ given.
 _version added 0.1_
 ####**Description**: get/set the `visible` state of the layer
 
-**visible** a boolean setting the visibiliyu of the layer
+ * **visible** a boolean setting the visibiliyu of the layer
 
 >Returns: visible (boolean)
 
@@ -611,7 +611,7 @@ If no visible is given, it will return the current visibility.
 _version added 0.1_
 ####**Description**: get/set the `opacity` of the layer
 
-**position** a float [0-1] setting the opacity of the layer
+ * **position** a float [0-1] setting the opacity of the layer
 
 >Returns: opacity (float)
 
@@ -662,11 +662,11 @@ $.extend($.MapQuery.Layer, {
 _version added 0.1_
 ####**Description**: create a Bing maps layer
 
-**view** a string ['road','hybrid','satellite'] to define which Bing maps
-layer to use (default road)
-**key** Bing Maps API key for your application. Get you own at
-http://bingmapsportal.com/
-**label** string with the name of the layer
+ * **view** a string ['road','hybrid','satellite'] to define which Bing maps
+layer to use (default road)   
+ * **key** Bing Maps API key for your application. Get you own at
+http://bingmapsportal.com/ 
+ * **label** string with the name of the layer
 
 
       layers:[{
@@ -710,9 +710,9 @@ http://bingmapsportal.com/
 _version added 0.1_
 ####**Description**: create a Google maps layer
 
-**view** a string ['road','hybrid','satellite'] to define which Google maps
+ * **view** a string ['road','hybrid','satellite'] to define which Google maps
 layer to use (default road)
-**label** string with the name of the layer
+ * **label** string with the name of the layer
 
 
 *Note* you need to include the google maps v3 API in your application by adding
@@ -750,7 +750,7 @@ layer to use (default road)
 _version added 0.1_
 ####**Description**: create a vector layer
 
-**label** string with the name of the layer
+ * **label** string with the name of the layer
 
 
       layers:[{
@@ -773,13 +773,13 @@ _version added 0.1_
 _version added 0.1_
 ####**Description**: create a JSON layer
 
-**url** a string pointing to the location of the JSON data
-**strategies** a string ['bbox','cluster','filter','fixed','paging','refresh','save']
+ * **url** a string pointing to the location of the JSON data
+ * **strategies** a string ['bbox','cluster','filter','fixed','paging','refresh','save']
 stating which update strategy should be used (default fixed)
 (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
-**projection** a string with the projection of the JSON data (default EPSG:4326)
-**styleMap** {object} the style to be used to render the JSON data
-**label** string with the name of the layer
+ * **projection** a string with the projection of the JSON data (default EPSG:4326)
+ * **styleMap** {object} the style to be used to render the JSON data    
+ * **label** string with the name of the layer
 
 
       layers:[{
@@ -851,11 +851,11 @@ stating which update strategy should be used (default fixed)
 _version added 0.1_
 ####**Description**: create an OpenStreetMap layer
 
-
-**label** string with the name of the layer
-**url** A single URL (string) or an array of URLs to OSM-like server like
-Cloudmade
-**attribution** A string to put some attribution on the map
+ 
+ * **label** string with the name of the layer   
+ * **url** A single URL (string) or an array of URLs to OSM-like server like 
+Cloudmade   
+ * **attribution** A string to put some attribution on the map
 
       layers:[{
         type: 'osm',
@@ -882,15 +882,51 @@ Cloudmade
             };
         },
 /**
+###*layer* `{type:tms}`
+_version added 0.1_
+####**Description**: create an OpenStreetMap layer
+
+ 
+ * **label** string with the name of the layer   
+ * **url** A single URL (string) or an array of URLs to the TMS end point
+ * **layer** The identifier for the <TileMap> as advertised by the service. 
+ For example, if the service advertises a <TileMap> with ‘href=”http://tms.osgeo.org/1.0.0/vmap0”’, 
+ the layer property would be set to “vmap0”.
+ * **format** The image format (default png)
+
+      layers:[{
+        type: 'tms',
+        url: 'http://tilecache.osgeo.org/wms-c/Basic.py/',
+        layer: 'basic'
+        }]
+
+*/        
+        tms: function(options) {
+            var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
+                $.fn.mapQuery.defaults.layer.tms,
+                options);
+            var label = options.label || undefined;
+            var url = options.url || undefined;
+            var params = {
+                layername: o.layer,
+                type: o.format
+            };
+            return {
+                layer: new OpenLayers.Layer.TMS(label, url, params),
+                options: o
+            };
+        },
+/**
 ###*layer* `{type:wms}`
 _version added 0.1_
 ####**Description**: create a WMS layer
 
-**url** a string pointing to the location of the WMS service
-**layers** a string with the name of the WMS layer(s)
-**format** a string with format of the WMS image (default image/jpeg)
-**transparent** a boolean for requesting images with transparency
-**label** string with the name of the layer
+ * **url** a string pointing to the location of the WMS service
+ * **layers** a string with the name of the WMS layer(s)
+ * **format** a string with format of the WMS image (default image/jpeg)
+ * **transparent** a boolean for requesting images with transparency
+ * **label** string with the name of the layer
+ * **wms_parameters** an hashtable of extra GetMap query string parameters and parameter values
 
 
       layers:[{
@@ -909,6 +945,9 @@ _version added 0.1_
                 transparent: o.transparent,
                 format: o.format
             };
+            if(typeof o.wms_parameters != "undefined"){
+                params = $.extend(params, o.wms_parameters);
+            }
             return {
                 layer: new OpenLayers.Layer.WMS(o.label, o.url, params, o),
                 options: o
@@ -920,11 +959,11 @@ _version added 0.1_
 _version added 0.1_
 ####**Description**: create a WMTS (tiling) layer
 
-**url** a string pointing to the location of the WMTS service
-**layer** a string with the name of the WMTS layer
-**matrixSet** a string with one of the advertised matrix set identifiers
-**style** a string with one of the advertised layer styles
-**label** string with the name of the layer
+ * **url** a string pointing to the location of the WMTS service
+ * **layer** a string with the name of the WMTS layer
+ * **matrixSet** a string with one of the advertised matrix set identifiers
+ * **style** a string with one of the advertised layer styles    
+ * **label** string with the name of the layer
 
 
       layers:[{
@@ -1033,6 +1072,10 @@ $.fn.mapQuery.defaults = {
         osm: {
             transitionEffect: 'resize',
             sphericalMercator: true
+        },
+        tms: {
+            transitionEffect: 'resize',
+            format: 'png'
         },
         raster: {
             // options for raster layers
