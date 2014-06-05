@@ -17,7 +17,7 @@ the matched element
 **options**  an object of key-value pairs with options for the map. Possible
 pairs are:
 
- * **layers** (array of MapQuery.Layer *or* MapQuery.Layer): Either an array 
+ * **layers** (array of MapQuery.Layer *or* MapQuery.Layer): Either an array
  or a single layer that should be added to the map
  * **center** ({position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}):
  Initially go to a certain location. At least one layer (in the `layers`
@@ -98,7 +98,7 @@ $.MapQuery.Map = function(element, options) {
     this.events = $({});
     // create triggers for all OpenLayers map events
     var events = {};
-    $.each(this.olMap.EVENT_TYPES, function(i, evt) {
+    $.each(this.olMap.events.BROWSER_EVENTS, function(i, evt) {
         events[evt] = function() {
             self.events.trigger(evt, arguments);
         };
@@ -456,7 +456,7 @@ $.MapQuery.Layer = function(map, id, options) {
 
     // create triggers for all OpenLayers layer events
     var events = {};
-    $.each(this.olLayer.EVENT_TYPES, function(i, evt) {
+    $.each(this.olLayer.events.BROWSER_EVENTS, function(i, evt) {
         events[evt] = function() {
             self.events.trigger(evt, arguments);
             self.map.events.trigger(evt, arguments);
@@ -665,9 +665,9 @@ _version added 0.1_
 ####**Description**: create a Bing maps layer
 
  * **view** a string ['road','hybrid','satellite'] to define which Bing maps
-layer to use (default road)   
+layer to use (default road)
  * **key** Bing Maps API key for your application. Get you own at
-http://bingmapsportal.com/ 
+http://bingmapsportal.com/
  * **label** string with the name of the layer
 
 
@@ -780,7 +780,7 @@ _version added 0.1_
 stating which update strategy should be used (default fixed)
 (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
  * **projection** a string with the projection of the JSON data (default EPSG:4326)
- * **styleMap** {object} the style to be used to render the JSON data    
+ * **styleMap** {object} the style to be used to render the JSON data
  * **label** string with the name of the layer
 
 
@@ -853,10 +853,10 @@ stating which update strategy should be used (default fixed)
 _version added 0.1_
 ####**Description**: create an OpenStreetMap layer
 
- 
- * **label** string with the name of the layer   
- * **url** A single URL (string) or an array of URLs to OSM-like server like 
-Cloudmade   
+
+ * **label** string with the name of the layer
+ * **url** A single URL (string) or an array of URLs to OSM-like server like
+Cloudmade
  * **attribution** A string to put some attribution on the map
 
       layers:[{
@@ -888,11 +888,11 @@ Cloudmade
 _version added 0.1_
 ####**Description**: create an OpenStreetMap layer
 
- 
- * **label** string with the name of the layer   
+
+ * **label** string with the name of the layer
  * **url** A single URL (string) or an array of URLs to the TMS end point
- * **layer** The identifier for the <TileMap> as advertised by the service. 
- For example, if the service advertises a <TileMap> with ‘href=”http://tms.osgeo.org/1.0.0/vmap0”’, 
+ * **layer** The identifier for the <TileMap> as advertised by the service.
+ For example, if the service advertises a <TileMap> with ‘href=”http://tms.osgeo.org/1.0.0/vmap0”’,
  the layer property would be set to “vmap0”.
  * **format** The image format (default png)
 
@@ -902,7 +902,7 @@ _version added 0.1_
         layer: 'basic'
         }]
 
-*/        
+*/
         tms: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                 $.fn.mapQuery.defaults.layer.tms,
@@ -964,7 +964,7 @@ _version added 0.1_
  * **url** a string pointing to the location of the WMTS service
  * **layer** a string with the name of the WMTS layer
  * **matrixSet** a string with one of the advertised matrix set identifiers
- * **style** a string with one of the advertised layer styles    
+ * **style** a string with one of the advertised layer styles
  * **label** string with the name of the layer
 
 
