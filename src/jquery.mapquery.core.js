@@ -94,17 +94,6 @@ $.MapQuery.Map = function(element, options) {
     element.data('mapQuery', this);
     this.layersList = {};
 
-    // To bind and trigger jQuery events
-    this.events = $({});
-    // create triggers for all OpenLayers map events
-    var events = {};
-    $.each(this.olMap.events.BROWSER_EVENTS, function(i, evt) {
-        events[evt] = function() {
-            self.events.trigger(evt, arguments);
-        };
-    });
-    this.olMap.events.on(events);
-
     // Add layers to the map
     if (this.options.layers!==undefined) {
         this.layers(this.options.layers);
@@ -454,16 +443,6 @@ $.MapQuery.Layer = function(map, id, options) {
         this, options);
     this.olLayer = res.layer;
     this.options = res.options;
-
-    // create triggers for all OpenLayers layer events
-    var events = {};
-    $.each(this.olLayer.events.BROWSER_EVENTS, function(i, evt) {
-        events[evt] = function() {
-            self.events.trigger(evt, arguments);
-            self.map.events.trigger(evt, arguments);
-        };
-    });
-    this.olLayer.events.on(events);
 
     this.map.olMap.addLayer(this.olLayer);
 };
