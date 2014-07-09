@@ -94,6 +94,9 @@ $.MapQuery.Map = function(element, options) {
     element.data('mapQuery', this);
     this.layersList = {};
 
+    // To bind and trigger jQuery events
+    this.events = $({});
+
     // Add layers to the map
     if (this.options.layers!==undefined) {
         this.layers(this.options.layers);
