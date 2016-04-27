@@ -1,7 +1,7 @@
 {
-    "name": "mapbender/documentation",
-    "description": "Mapbender3 documenation",
-    "keywords": ["mapbender", "documentation"],
+    "name": "mapbender/mapquery",
+    "description": "MapQuery",
+    "keywords": ["mapquery"],
     "type": "library",
     "license": "MIT",
     "authors": [
