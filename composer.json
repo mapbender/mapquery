@@ -19,7 +19,8 @@
                 "src/*.js"
             ],
             "files": [
-                "lib/openlayers/*"
+                "lib/openlayers/*",
+                "lib/openlayers/**"
             ]
         },
         "branch-alias": {
