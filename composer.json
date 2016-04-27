@@ -2,7 +2,7 @@
     "name": "mapbender/mapquery",
     "description": "MapQuery",
     "keywords": ["mapquery"],
-    "type": "library",
+    "type": "component",
     "license": "MIT",
     "authors": [
         {"name": "Volker Mische <volker.mische@gmail.com>"},
@@ -10,6 +10,20 @@
         {"name": "Steven Ottens <smo@minst.net>"}
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "robloach/component-installer": "0.2.*"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "src/*.js"
+            ],
+            "files": [
+                "lib/openlayers/*"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
