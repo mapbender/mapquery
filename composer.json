@@ -15,9 +15,6 @@
     },
     "extra": {
         "component": {
-            "scripts": [
-                "src/*.js"
-            ],
             "files": [
                 "lib/openlayers/*",
                 "lib/openlayers/**"
