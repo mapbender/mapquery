@@ -9,7 +9,7 @@ mkdir ol2-dist
   ol2-dist/authors.txt ol2-dist/license.txt \
   ol2-dist/readme.md \
   openlayers/ ) \
-&& ( cat ol2-dist/build/license.txt > OpenLayers.debug.min.js.build ) \
+&& ( cat ol2-dist/build/license.txt patch-info.js > OpenLayers.debug.min.js.build ) \
 && ( ( cat openlayers2.debug.patch | patch -o - ol2-dist/OpenLayers.debug.js | uglifyjs -c -m ) >> OpenLayers.debug.min.js.build ) \
 && ( mv OpenLayers.debug.min.js.build openlayers/OpenLayers.js )
 
